@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({ data }) => !data.draft);
+  return notes.map((note) => ({
+    params: { id: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+
+function formatDate(d: Date) {
+  return `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}`;
+}
+---
+
+<Layout title={note.data.title}>
+  <article class="note-page">
+    <span class="note-date">{formatDate(note.data.date)}</span>
+    {note.data.title && <h1>{note.data.title}</h1>}
+    <div class="note-body">
+      <Content />
+    </div>
+    <a class="back-link" href="/">← 一覧に戻る</a>
+  </article>
+</Layout>

@@ -1,0 +1,194 @@
+:root {
+  --text: #000000;
+  --muted: #000000;
+  --bg: #ffffff;
+  --max-width: 620px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+    Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP",
+    sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0;
+  padding: 0.75rem 0.75rem 1.5rem;
+  text-align: left;
+}
+
+a {
+  color: inherit;
+}
+
+/* --- header --- */
+
+header.site-header {
+  margin-bottom: 0.9rem;
+}
+
+a.site-title {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.site-tagline {
+  margin: 0.05rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* --- index: list of notes --- */
+
+.notes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notes-list li {
+  margin-bottom: 0.6rem;
+}
+
+.notes-list li:last-child {
+  margin-bottom: 0;
+}
+
+.note-date {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.1rem;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.note-title {
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  display: inline-block;
+  margin-bottom: 0.1rem;
+}
+
+.note-title:hover {
+  color: var(--muted);
+}
+
+.note-excerpt {
+  color: var(--text);
+  font-size: 0.8rem;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* --- pagination --- */
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+}
+
+.pager-side {
+  flex: 1;
+}
+
+.pager-side-right {
+  text-align: right;
+}
+
+.pager a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: var(--text);
+}
+
+.pager a:hover {
+  color: var(--muted);
+}
+
+/* --- single note --- */
+
+.note-page .note-date {
+  margin-bottom: 0.25rem;
+}
+
+.note-page h1 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.01em;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.note-body {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.note-body p {
+  margin: 0 0 0.6em;
+}
+
+.note-body p:last-child {
+  margin-bottom: 0;
+}
+
+.note-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.8em 0;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.76rem;
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.back-link:hover {
+  color: var(--muted);
+}
+
+footer.site-footer {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.01em;
+}

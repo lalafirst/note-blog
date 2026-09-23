@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pagination from '../components/Pagination.astro';
+import { getSortedNotes, formatDate, excerpt, PAGE_SIZE } from '../lib/notes';
+
+const notes = await getSortedNotes();
+const totalPages = Math.max(1, Math.ceil(notes.length / PAGE_SIZE));
+const pageNotes = notes.slice(0, PAGE_SIZE);
+---
+
+<Layout>
+  {pageNotes.length === 0 ? (
+    <p class="empty">まだ投稿がありません。</p>
+  ) : (
+    <ul class="notes-list">
+      {pageNotes.map((note) => (
+        <li>
+          <span class="note-date">{formatDate(note.data.date)}</span>
+          <a class="note-title" href={`/notes/${note.id}/`}>
+            {note.data.title ?? '（無題）'}
+          </a>
+          <p class="note-excerpt">{excerpt(note.body)}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+  <Pagination currentPage={1} totalPages={totalPages} />
+</Layout>

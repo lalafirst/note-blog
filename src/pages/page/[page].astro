@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getSortedNotes, formatDate, excerpt, PAGE_SIZE } from '../../lib/notes';
+
+export async function getStaticPaths() {
+  const notes = await getSortedNotes();
+  const totalPages = Math.max(1, Math.ceil(notes.length / PAGE_SIZE));
+  // Page 1 is served by index.astro at "/" — start this route at page 2.
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => {
+    const page = i + 2;
+    return {
+      params: { page: String(page) },
+      props: {
+        pageNotes: notes.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+        currentPage: page,
+        totalPages,
+      },
+    };
+  });
+}
+
+const { pageNotes, currentPage, totalPages } = Astro.props;
+---
+
+<Layout>
+  <ul class="notes-list">
+    {pageNotes.map((note) => (
+      <li>
+        <span class="note-date">{formatDate(note.data.date)}</span>
+        <a class="note-title" href={`/notes/${note.id}/`}>
+          {note.data.title ?? '（無題）'}
+        </a>
+        <p class="note-excerpt">{excerpt(note.body)}</p>
+      </li>
+    ))}
+  </ul>
+  <Pagination currentPage={currentPage} totalPages={totalPages} />
+</Layout>
